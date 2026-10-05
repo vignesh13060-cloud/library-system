@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VIGNESH – Library Management</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="bg-glow"></div>
+<div id="scene" aria-hidden="true"><div id="stage"></div></div>
+
+<header class="nav">
+  <a class="brand" data-go="home" href="#"><span class="brand-mark">V</span><span>VIGNESH</span></a>
+  <nav>
+    <a data-go="home" class="on">Books</a>
+    <a data-go="issue">Issue a book</a>
+    <a data-go="slip">Issue details <span class="pill" id="issuedCount">0</span></a>
+  </nav>
+</header>
+
+<section class="view on" id="v-home">
+  <div class="hero">
+    <p class="eyebrow">Digital Library Portal</p>
+    <h1>Find your next great read.</h1>
+    <p class="sub">Search any book to see it in 3D, check if it is on the shelf, and issue it in one step.</p>
+    <div class="search-box">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <input id="search" type="text" placeholder="Type a book name, author or call no…" autocomplete="off">
+    </div>
+    <div class="stats">
+      <div><strong id="stTotal">0</strong><span>Total Books</span></div>
+      <div><strong id="stAvail">0</strong><span>Available</span></div>
+      <div><strong id="stIssued">0</strong><span>Issued</span></div>
+      <div><strong id="stCats">0</strong><span>Departments</span></div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-head"><h2>Library catalog</h2><button class="btn ghost" data-issue="manual">Book not listed? Issue manually</button></div>
+    <div class="chips" id="chips"></div>
+    <div id="showcase"></div>
+    <p class="result-info" id="info"></p>
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
+
+<section class="view" id="v-issue">
+  <div class="section">
+    <div class="section-head"><h2>Issue a book</h2><button class="btn ghost" data-go="home">Back to books</button></div>
+    <div class="issue-wrap">
+      <div class="pv" id="issueBook"></div>
+      <form class="fcard" id="form" autocomplete="off">
+        <label class="tick wide"><input type="checkbox" id="manual"> This book is not in the catalog – enter it manually</label>
+        <div class="mf" id="mf" hidden>
+          <label class="wide">Book name<input type="text" name="mt" id="mt"></label>
+          <label>Author<input type="text" name="ma"></label>
+          <label>Department<select name="mc" id="mc"></select></label>
+        </div>
+        <label>Member name<input type="text" name="name"></label>
+        <label>Register no<input type="text" name="reg"></label>
+        <label>Department / class<input type="text" name="dept"></label>
+        <label>Phone<input type="tel" name="phone"></label>
+        <label class="wide">Loan period<select name="days"><option value="7">7 days</option><option value="14" selected>14 days</option><option value="21">21 days</option><option value="30">30 days</option></select></label>
+        <p class="err wide" id="err"></p>
+        <button class="btn gold wide" type="submit">Issue book</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="view" id="v-slip">
+  <div class="section">
+    <div class="section-head">
+      <h2>Issue details</h2>
+      <div class="controls">
+        <label class="auto"><input type="checkbox" id="auto"> Print automatically after issue</label>
+        <button class="btn gold" id="printBtn">Print slip</button>
+      </div>
+    </div>
+    <div class="slip-wrap"><div class="pv" id="slipBook"></div><div class="slip" id="slip"></div></div>
+    <p class="hint">Browsers ask for confirmation before printing. For fully automatic printing, open Chrome or Edge with the <code>--kiosk-printing</code> flag and set your library printer as the default.</p>
+    <h3 class="sub-h">All issued books</h3>
+    <div class="table-wrap">
+      <table><thead><tr><th>Book</th><th>Member</th><th>Issued</th><th>Due</th><th>Status</th><th></th></tr></thead><tbody id="issuedBody"></tbody></table>
+      <p class="empty" id="issuedEmpty">No books issued yet. Pick a book from the catalog.</p>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 VIGNESH Library</footer>
+<div id="turn"><div class="leaf"><b>VIGNESH</b></div></div>
+<div class="toast" id="toast"></div>
+<script src="script.js"></script>
+</body>
+</html>
